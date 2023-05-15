@@ -175,17 +175,6 @@ class StandardCommon:
                 ls.append(item)
             self.data[field] = ls
 
-class StandardAlonhadat(StandardCommon):
-    def __init__(self, data):
-        self.data = data
-        self.baseURL = 'https://alonhadat.com.vn'
-
-    def standardLinkImage(self, field):
-        ls = []
-        for item in self.data[field]:
-            item = self.baseURL + str(item)
-            ls.append(item)
-        self.data[field] = ls
 
 class StandardBatdongsan123(StandardCommon):
     def __init__(self, data):
