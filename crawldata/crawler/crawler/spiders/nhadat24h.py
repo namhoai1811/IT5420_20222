@@ -21,7 +21,8 @@ class BatdongsanSpider(scrapy.Spider):
         products = response.css('.item')
         for product in products:
             link_detail = product.css('.ct-title > a::attr(href)').extract_first()
-            self.link_page = link_detail
+            print(link_detail)
+            # self.link_page = link_detail
             yield response.follow(link_detail, self.parse_detail)
 
 
