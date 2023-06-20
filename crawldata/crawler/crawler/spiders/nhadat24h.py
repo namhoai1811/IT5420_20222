@@ -33,8 +33,7 @@ class BatdongsanSpider(scrapy.Spider):
             '.content-left > .main-content > #page-news > table > tbody > tr:last-child p:last-child::text').extract_first()
         item['code'] = response.css(
             '.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-5 > p:first-child::text').extract_first()
-        item['date'] = response.css(
-            '.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-4 > p::text').extract_first()
+        item['date'] = response.css('.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-4 > p::text').extract_first()
         item['price'] = response.css(
             '.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-3 .gia-ban::text').extract_first()
         item['address'] = response.css(
