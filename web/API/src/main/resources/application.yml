@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+#jwt security,  secret_key encoded base64 hex
+jwt_secret_key: 3273357638792F423F4528482B4D6251655468576D5A7134743677397A244326
+jwt_expire_time: 604800000
+
+#jpa
+spring:
+  #mysql
+  datasource:
+    url: jdbc:mysql://localhost:3307/is
+    username: root
+    password: 2292892000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
