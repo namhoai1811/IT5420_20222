@@ -4,11 +4,11 @@ from ..items import CrawlIBatdongsanItem
 
 class BatdongsanSpider(scrapy.Spider):
     i=1
-    name = "ibds"
-    base_url = "https://i-batdongsan.com/can-ban-nha-dat/"
+    name = "ibds1"
+    base_url = "https://i-batdongsan.com/cho-thue-nha-dat/"
     def start_requests(self):
         start_urls = [
-            "https://i-batdongsan.com/can-ban-nha-dat.htm"
+            "https://i-batdongsan.com/cho-thue-nha-dat.htm"
         ]
         for url in start_urls:
             yield scrapy.Request(url=url, callback=self.parse)

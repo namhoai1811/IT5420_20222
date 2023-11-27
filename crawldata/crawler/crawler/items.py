@@ -75,6 +75,27 @@ class CrawlBatdongsan123(Item):
     phone_contact = Field()
     project = Field()
 
+class CrawlCenhome(Item):
+    title= Field()
+    price = Field()
+    description = Field()
+    link_image = Field()
+    url_page = Field()
+    bedroom = Field()
+    bathroom = Field()
+    acreage = Field()
+    address = Field()
+    direction = Field()
+    date = Field()
+    code = Field()
+    name_contact = Field()
+    phone_contact = Field()
+    project = Field()
+    ward = Field()
+    street = Field()
+    province = Field()
+    district = Field()
+    type = Field()
 
 class CrawlAlonhadatItem(Item):
     title = Field()
