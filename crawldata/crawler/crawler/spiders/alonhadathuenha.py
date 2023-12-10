@@ -19,7 +19,7 @@ class BatdongsanSpider(scrapy.Spider):
             link_detail = product.css('.thumbnail > a::attr(href)').extract_first()
             yield response.follow(link_detail, self.parse_detail)
 
-        if self.i < 500:
+        if self.i < 20:
             self.i += 1
             path_next = self.base_url + "trang--"+str(self.i)+".html"
             yield response.follow(path_next, callback=self.parse)
@@ -58,13 +58,14 @@ class BatdongsanSpider(scrapy.Spider):
         item['address'] = response.css('.property > .address > .value::text').extract_first()
         item['juridical'] = response.css(
             '.property > .moreinfor1 > .infor > table > tr:nth-child(3) > td:nth-child(4)::text').extract_first()
-        item['type'] = response.css(
-            '.property > .moreinfor1 > .infor > table > tr:nth-child(3) > td:nth-child(2)::text').extract_first()
+        # item['type'] = response.css(
+        #     '.property > .moreinfor1 > .infor > table > tr:nth-child(3) > td:nth-child(2)::text').extract_first()
         item['link_image'] = response.css('.property > .images > .imageview > img::attr(src)').extract_first()
         item['name_contact'] = response.css('.contact > .contact-info > .content > .name::text').extract_first()
         item['phone_contact'] = response.css('.contact > .contact-info > .content > .fone > a::text').extract_first()
         item['introduce_contact'] = response.css('.contact > .contact-info > .content > .introduce::text').extract_first()
         item['url_page'] = response.request.url
+        item['type'] = '1'
 
         yield item
 

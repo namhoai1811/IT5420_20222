@@ -108,9 +108,9 @@ class StandardCommon:
                 date = date.group(0)
             else:
                 if "Hôm nay" in str(item):
-                    date = "15/05/2023"
+                    date = "26/11/2023"
                 if "Hôm qua" in str(item):
-                    date = "14/05/2023"
+                    date = "25/11/2023"
             ls.append(date)
         self.data[fieldDate] = ls
 
@@ -189,7 +189,7 @@ class StandardAlonhadat(StandardCommon):
         self.data[field] = ls
 
 
-PATH_ALO_NHA_DAT = "../crawldata/crawler/alonhadat.csv"
+PATH_ALO_NHA_DAT = "../crawldata/crawler/alonhadatt.csv"
 alonhadat = pd.read_csv(PATH_ALO_NHA_DAT, encoding = 'utf-8')
 
 alonhadat = StandardAlonhadat(alonhadat)
@@ -202,10 +202,10 @@ alonhadat.standardLinkImage("link_image")
 alonhadat.standardPrice("price", "square")
 alonhadat.standardUnit("bedroom", " pn")
 alonhadat.standardUnit("floor", " t")
-alonhadat.standardType("type")
+# alonhadat.standardType("type")
 alonhadat.processValueNull(["bedroom","juridical", "direct", "price", "district", "province", "street", "ward", "floor",
                             "introduce_contact", "description", "project", "length", "width", "road_width"], ["0 pn","Sổ đỏ", "None", "0", "None",
                                                                                     "None", "None", "None", "0 t", "None","None", "None", "0m","0m", "0m"])
 alonhadat.dropDuplicate(['province', 'street', 'ward', 'district', 'project', 'type', 'direct', 'price', 'square',
                          'bedroom', 'floor', 'diningroom', 'kitchen'])
-alonhadat.data.to_csv("alonhadat.csv")
+alonhadat.data.to_csv("alonhadatt.csv")

@@ -109,9 +109,9 @@ class StandardCommon:
                 date = date.group(0)
             else:
                 if "Hôm nay" in item:
-                    date = "15/05/2023"
+                    date = "27/11/2023"
                 if "Hôm qua" in item:
-                    date = "14/05/2023"
+                    date = "26/11/2023"
             ls.append(date)
         self.data[fieldDate] = ls
 
@@ -200,7 +200,7 @@ class StandardNhadat24h(StandardCommon):
             ls.append(item)
         self.data[field] = ls
 
-PATH_NHA_DAT_24H= "../crawldata/crawler/nhadat24h.csv"
+PATH_NHA_DAT_24H= "../crawldata/crawler/nhdat24ht.csv"
 nhadat24h = pd.read_csv(PATH_NHA_DAT_24H, encoding="utf-8")
 
 nd24h = StandardNhadat24h(nhadat24h)
@@ -213,10 +213,10 @@ nd24h.standardDate("date")
 nd24h.standardPrice("price", "ground_area")
 nd24h.standardNone(["juridical"])
 nd24h.standardDirect("direct")
-nd24h.standardType("type")
+# nd24h.standardType("type")
 nd24h.standardUnit("bedroom", " pn")
 nd24h.standardUnit("floor", " t")
 nd24h.processValueNull(["description","juridical", "province", "ward", "district", "street", "price"], ["None", "Sổ đỏ", "None", "None", "None", "None", "0"])
 nd24h.dropDuplicate(['province', "ward", "district", "street", 'type', 'direct', 'price', 'ground_area', 'usable_area', 'kitchen', 'livingroom', 'name_project', 'specific_address'])
 
-nd24h.data.to_csv("nhadat24h.csv")
+nd24h.data.to_csv("nhadat24ht.csv")

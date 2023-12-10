@@ -19,7 +19,7 @@ class BatdongsanSpider(scrapy.Spider):
             link_detail = product.css('.text > .ct_title > a::attr(href)').extract_first()
             yield response.follow(link_detail, self.parse_detail)
 
-        if self.i < 5:
+        if self.i < 20:
             self.i += 1
             path_next = self.base_url + "p"+str(self.i)+".htm"
             yield response.follow(path_next, callback=self.parse)
@@ -37,8 +37,8 @@ class BatdongsanSpider(scrapy.Spider):
         item['brief'] = response.css('.property > .detail::text').extract_first()
         item['code'] = response.css(
             '.property > .moreinfor1 > .infor > table > tr:nth-child(2) > td:nth-child(2)::text').extract_first()
-        item['type'] = response.css(
-            '.property > .moreinfor1 > .infor > table > tr:nth-child(4) > td:nth-child(2)::text').extract_first()
+        # item['type'] = response.css(
+        #     '.property > .moreinfor1 > .infor > table > tr:nth-child(4) > td:nth-child(2)::text').extract_first()
         item['width'] = response.css(
             '.property > .moreinfor1 > .infor > table > tr:nth-child(5) > td:nth-child(2)::text').extract_first()
         item['length'] = response.css(
@@ -67,6 +67,7 @@ class BatdongsanSpider(scrapy.Spider):
         item['parking'] = response.css(
             '.property > .moreinfor1 > .infor > table > tr:nth-child(5) > td:nth-child(6) > img::attr(src)').extract_first()
         item['url_page'] = response.request.url
+        item['type'] = '0'
 
         yield item
 

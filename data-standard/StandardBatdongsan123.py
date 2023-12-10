@@ -108,9 +108,9 @@ class StandardCommon:
                 date = date.group(0)
             else:
                 if "Hôm nay" in item:
-                    date = "15/05/2023"
+                    date = "27/11/2023"
                 if "Hôm qua" in item:
-                    date = "14/05/2023"
+                    date = "26/11/2023"
             ls.append(date)
         self.data[fieldDate] = ls
 
@@ -189,16 +189,17 @@ class StandardBatdongsan123(StandardCommon):
             self.data[field] = ls
 
 
-PATH_BDS123 = "../crawldata/crawler/batdongsan123.csv"
+PATH_BDS123 = "../crawldata/crawler/bds123mb.csv"
 bds123 = pd.read_csv(PATH_BDS123, encoding = 'utf-8')
 
 bds123 = StandardBatdongsan123(bds123)
 bds123.sliceAddress("address")
 bds123.standardDate("date")
 bds123.standardPrice("price", "acreage")
-bds123.addField(["type", "floor", "terrace", "parking", "kitchen", "juridical"], ["Cần bán căn hộ chung cư", "1 t","không", "có", "có","Sổ hồng/ Sổ đỏ" ])
+# bds123.addField(["type", "floor", "terrace", "parking", "kitchen", "juridical"], ["Cần bán căn hộ chung cư", "1 t","không", "có", "có","Sổ hồng/ Sổ đỏ" ])
+bds123.addField(["floor", "terrace", "parking", "kitchen", "juridical"], [ "1 t","không", "có", "có","Sổ hồng/ Sổ đỏ" ])
 bds123.strip(["title"])
 bds123.processValueNull(["direction", "province", "street", "ward", "district", "price", "bedroom", "bathroom" ], ["None", "None", "None", "None", "None", "0", "0 pn", "0 wc"])
 bds123.dropDuplicate(["province", "ward", "street", "district", "acreage", "price", "bedroom", "project", "bathroom"])
 
-bds123.data.to_csv("batdongsan123.csv")
+bds123.data.to_csv("bds123mb.csv")

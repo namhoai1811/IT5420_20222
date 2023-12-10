@@ -107,9 +107,9 @@ class StandardCommon:
                 date = date.group(0)
             else:
                 if "Hôm nay" in item:
-                    date = "15/05/2023"
+                    date = "27/12/2023"
                 if "Hôm qua" in item:
-                    date = "14/05/2023"
+                    date = "26/12/2023"
             ls.append(date)
         self.data[fieldDate] = ls
 
@@ -191,7 +191,7 @@ class StandardIbatdongsan(StandardCommon):
         for item in self.data["price"]:
             print(type(item))
 
-PATH_IBAT_DONG_SAN = "../crawldata/crawler/ibatdongsan.csv"
+PATH_IBAT_DONG_SAN = "../crawldata/crawler/ibdt.csv"
 ibatdongsan = pd.read_csv(PATH_IBAT_DONG_SAN, encoding = 'utf-8')
 
 ibds = StandardIbatdongsan(ibatdongsan)
@@ -200,7 +200,7 @@ ibds.standardDate("date")
 # ibds.removeUnitMeasure(["area", "length", "width", "world_highway"])
 ibds.standardPrice("price", "area")
 ibds.standardNone(["diningroom", "direct", "floor", "kitchen", "parking", "terrace", "width", "juridical", "length", "world_highway", "bedroom"])
-ibds.standardType("type")
+# ibds.standardType("type")
 ibds.standardIcon(["diningroom", "kitchen", "parking", "terrace"])
 ibds.standardLinkImage("link_image")
 ibds.standardUnit("bedroom", " pn")
@@ -208,4 +208,4 @@ ibds.standardUnit("floor", " t")
 ibds.processValueNull(["direct","bedroom", "price", "floor", "juridical", "length","width", "world_highway", "ward", "province", "district", "street"],["None","0 pn", "0", "0 t", "Sổ hồng", "0m", "0m", "0m","None", "None", "None", "None"])
 ibds.dropDuplicate(['province', 'district', 'ward', 'street', 'type', 'direct', 'price', 'length', 'width', 'area', 'bedroom', 'floor', 'world_highway'])
 ibds.process()
-ibds.data.to_csv("ibatdongsan.csv")
+ibds.data.to_csv("ibdst.csv")

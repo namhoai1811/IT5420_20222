@@ -4,8 +4,8 @@ from ..items import CrawlNhadat24h
 
 class BatdongsanSpider(scrapy.Spider):
     i=1
-    base_url = "https://nhadat24h.net.vn/danh-muc/nha-dat-ban/50?page="
-    name = "nhadat24h"
+    base_url = "https://nhadat24h.net.vn/danh-muc/nha-dat-cho-thue/51?page="
+    name = "nhadat24h1"
     def start_requests(self):
         start_urls=[self.base_url]
         i = 1
@@ -40,8 +40,8 @@ class BatdongsanSpider(scrapy.Spider):
             '.content-left > .main-content > #page-news .thong-tin-chi-tiet > div:last-child > p::text').extract_first()
         item['specific_address'] = response.css(
             '.content-left > .main-content > #page-news .thong-tin-chi-tiet > div:last-child > p:last-child::text ').extract_first()
-        item['type'] = response.css(
-            '.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-4 > p:last-child::text').extract_first()
+        # item['type'] = response.css(
+        #     '.content-left > .main-content > #page-news .thong-tin-chi-tiet > .col-md-4 > p:last-child::text').extract_first()
         item['name_project'] = response.css(
             '.content-left > .main-content > #page-news > table > tbody > tr:nth-child(6) > td::text').extract_first()
         item['link_image'] = response.css('#expandedImg::attr(src)').extract_first()
@@ -78,6 +78,6 @@ class BatdongsanSpider(scrapy.Spider):
         item['road_width'] = response.css(
             '.content-left > .main-content > #page-news > table > tbody > tr:nth-child(5) > td:nth-child(2)::text').extract_first()
         item['url_page'] = response.request.url
-        item['type'] = '0'
+        item['type'] = '1'
 
         yield item

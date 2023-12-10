@@ -29,6 +29,7 @@ class CrawlIBatdongsanItem(Item):
     name_contact = Field()
     link_image = Field()
     url_page = Field()
+    type = Field()
 
 
 class CrawlNhadat24h(Item):
@@ -74,6 +75,7 @@ class CrawlBatdongsan123(Item):
     name_contact = Field()
     phone_contact = Field()
     project = Field()
+    type = Field()
 
 class CrawlCenhome(Item):
     title= Field()

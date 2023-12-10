@@ -41,6 +41,7 @@ class BatdongsanSpider(scrapy.Spider):
         item['name_contact'] = response.css('.rightCol > .aside-box > .aside-box-content > a  .author-name::text').extract_first()
         item['project'] = response.css('.leftCol .table-wrap > table > tbody > tr:nth-child(3) > td:nth-child(2)::text').extract_first()
         item['phone_contact'] = response.css('.rightCol > .aside-box-author > .aside-box-content .btn-phone::text').extract()
+        item['type'] = '0'
         yield item
 
 
